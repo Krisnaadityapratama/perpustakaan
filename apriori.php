@@ -41,14 +41,53 @@ function apriori($data, $minSupport, $minConfidence) {
 $minSupport = 0.5;
 $minConfidence = 0.5;
 
+echo '<!DOCTYPE html>';
+echo '<html>';
+echo '<head>';
+echo '<title>Apriori Algorithm Results - PustakaStats UMRAH</title>';
+echo '<link rel="stylesheet" href="CSS/styles2.css">';  
+echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
+echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">';
+echo '</head>';
+echo '<body>';
+
+echo '<header>';
+echo '<h1>';
+echo '<img src="UMRAH.png" alt="">';
+echo 'PustakaStats UMRAH';
+echo '</h1>';
+echo '</header>';
+
+echo '<aside class="sidebar">';
+echo '<ul>';
+echo '<li><i class="fas fa-home"></i><a href="index.php">Kembali</a></li>';
+echo '</ul>';
+echo '</aside>';
+
+echo '<div class="content">';
+
 foreach ($dataFakultasProdi as $key => $transactions) {
     echo "<h3>Fakultas dan Prodi: $key</h3>";
 
     $patterns = apriori([$transactions], $minSupport, $minConfidence);
 
+    // Display patterns in a table
+    echo '<table class="table-container">';
+    echo '<thead>';
+    echo '<tr><th>Pola</th><th>Support</th></tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
     foreach ($patterns as $item => $support) {
-        echo "Pola: $item, Support: $support<br>";
+        echo "<tr><td>$item</td><td>" . number_format($support, 4) . "</td></tr>";
     }
-    echo "<hr>";
+
+    echo '</tbody>';
+    echo '</table>';
+    echo '<hr>';
 }
+
+echo '</div>';  // Close content div
+echo '</body>';
+echo '</html>';
 ?>

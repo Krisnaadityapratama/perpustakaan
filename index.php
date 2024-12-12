@@ -51,122 +51,97 @@ $peminjamFakultas = array_column($dataFakultas, 'jumlah_peminjam');
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Analisis Perpustakaan</title>
+    <title>PustakaStats UMRAH</title>
+    <link rel="stylesheet" href="CSS/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        h1 {
-            text-align: center;
-            background-color: #007bff;
-            color: white;
-            padding: 15px 0;
-            margin: 0;
-        }
-
-        h2 {
-            color: #007bff;
-            margin-left: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            background-color: #ffffff;
-            margin: 10px 20px;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .chart-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .chart-container canvas {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .content-section {
-            margin: 20px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #007bff;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
 </head>
 <body>
-    <h1>Analisis Perpustakaan</h1>
+    <header>
+        <h1>
+            <img src="UMRAH.png" alt="Logo">
+            PustakaStats UMRAH
+        </h1>
+    </header>
 
-    <div class="content-section">
-    <button onclick="window.location.href='form.php'">Tambah Data</button>
-    <button onclick="window.location.href='apriori.php'">Algoritma Apriori</button>
-        <h2>Analisis Kunjungan dan Peminjaman Berdasarkan Prodi</h2>
+    <aside class="sidebar">
+        <ul>
+            <li><i class="fas fa-home"></i><a href="index.php">Beranda</a></li>
+            <li><i class="fas fa-user-friends"></i><a href="form.php">Data Pengunjung & Peminjaman</a></li>
+            <li><i class="fas fa-chart-bar"></i><a href="apriori.php">Algoritma Apriori</a></li>
+            <li><i class="fas fa-info-circle"></i><a href="about.php">About</a></li>
+        </ul>
+    </aside>
 
-        <div class="chart-container">
-            <canvas id="grafikProdi" width="400" height="200"></canvas>
+    <!-- Main Content Section -->
+    <main class="content">
+        <!-- Prodi Analysis -->
+        <div class="content-section">
+            <h2>Analisis Kunjungan dan Peminjaman Berdasarkan Prodi</h2>
+            <div class="chart-container">
+                <canvas id="grafikProdi"></canvas>
+            </div>
+            <h3>Data Analisis Berdasarkan Prodi</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prodi</th>
+                            <th>Jumlah Pengunjung</th>
+                            <th>Jumlah Peminjam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $row): ?>
+                            <tr>
+                                <td><?php echo $row['prodi']; ?></td>
+                                <td><?php echo $row['jumlah_pengunjung']; ?></td>
+                                <td><?php echo $row['jumlah_peminjam']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <h2>Data Analisis Berdasarkan Prodi</h2>
-        <ul>
-            <?php foreach ($data as $row): ?>
-                <li>
-                    Prodi: <?php echo $row['prodi']; ?> - 
-                    Pengunjung: <?php echo $row['jumlah_pengunjung']; ?>, 
-                    Peminjam: <?php echo $row['jumlah_peminjam']; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-
-    <div class="content-section">
-        <h2>Analisis Kunjungan dan Peminjaman Berdasarkan Fakultas</h2>
-
-        <div class="chart-container">
-            <canvas id="grafikFakultas" width="400" height="200"></canvas>
+        <!-- Fakultas Analysis -->
+        <div class="content-section">
+            <h2>Analisis Kunjungan dan Peminjaman Berdasarkan Fakultas</h2>
+            <div class="chart-container">
+                <canvas id="grafikFakultas"></canvas>
+            </div>
+            <h3>Data Analisis Berdasarkan Fakultas</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fakultas</th>
+                            <th>Jumlah Pengunjung</th>
+                            <th>Jumlah Peminjam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($dataFakultas as $row): ?>
+                            <tr>
+                                <td><?php echo $row['fakultas']; ?></td>
+                                <td><?php echo $row['jumlah_pengunjung']; ?></td>
+                                <td><?php echo $row['jumlah_peminjam']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </main>
 
-        <h2>Data Analisis Berdasarkan Fakultas</h2>
-        <ul>
-            <?php foreach ($dataFakultas as $row): ?>
-                <li>
-                    Fakultas: <?php echo $row['fakultas']; ?> - 
-                    Pengunjung: <?php echo $row['jumlah_pengunjung']; ?>, 
-                    Peminjam: <?php echo $row['jumlah_peminjam']; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-
+    <!-- Footer Section -->
     <footer>
-        &copy; 2024 Analisis Perpustakaan
+        &copy; 2024 PustakaStats UMRAH
     </footer>
 
+    <!-- Chart.js Script -->
     <script>
+        // Data for Prodi Analysis
         var ctxProdi = document.getElementById('grafikProdi').getContext('2d');
         var chartProdi = new Chart(ctxProdi, {
             type: 'bar',
@@ -198,6 +173,7 @@ $peminjamFakultas = array_column($dataFakultas, 'jumlah_peminjam');
             }
         });
 
+        // Data for Fakultas Analysis
         var ctxFakultas = document.getElementById('grafikFakultas').getContext('2d');
         var chartFakultas = new Chart(ctxFakultas, {
             type: 'bar',

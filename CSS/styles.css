@@ -1,0 +1,234 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px; /* Mengurangi padding untuk memperkecil ukuran header */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    height: 53px; /* Memberikan tinggi tetap lebih kecil untuk header */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.7em; /* Memperbesar ukuran teks */
+}
+
+header h1 img {
+    height: 50px; /* Memperkecil logo */
+    margin-right: 5px;
+}
+
+h1 {
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 img {
+    max-height: 80px;
+    margin-right: 15px;
+}
+
+h2 {
+    color: #007bff;
+    margin-left: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ffffff;
+    margin: 10px 20px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+li i {
+    margin-right: 10px;
+    color: rgb(255, 255, 255); 
+}
+
+li a {
+    text-decoration: none;
+    color: #333;
+    flex-grow: 1;
+}
+
+li:hover a {
+    color: #003366; /* Dark blue */
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #1e90ff; /* Mengubah warna kolom sidebar */
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: fixed;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+    padding-top: 80px; /* Tambahkan padding agar menu mulai di bawah header */
+}
+
+.sidebar-collapsed {
+    transform: translateX(-250px);
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 1; /* Mengurangi ukuran font sidebar */
+    background-color: #1e90ff; /* Warna lebih gelap untuk header sidebar */
+    border-bottom: 1px solid #104e8b;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #104e8b;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #1e90ff; /* Warna dasar menu sidebar */
+    color: #fff;
+    display: flex; /* Menyusun ikon dan teks secara horizontal */
+    align-items: center;
+}
+
+.sidebar ul li i {
+    margin-right: 10px; /* Memberikan jarak antara ikon dan teks */
+    font-size: 1em;
+    color: white; /* Warna ikon default */
+    transition: color 0.3s ease; /* Animasi transisi warna ikon */
+}
+
+.sidebar ul li:hover {
+    background-color: #ffe83a; /* Warna hover menu sidebar */
+    color: #0f3c68; /* Warna teks saat hover */
+}
+
+.sidebar ul li:hover i {
+    color: #0f3c68; /* Warna ikon saat hover */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: inherit; /* Warna teks mengikuti warna elemen induk */
+    flex-grow: 1; /* Membuat teks memenuhi ruang yang tersedia */
+    transition: color 0.3s ease; /* Animasi transisi warna teks */
+}
+
+.sidebar ul li:hover a {
+    color: #0f3c68; /* Warna teks saat hover */
+}
+
+
+/* Content styling */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content-collapsed {
+    margin-left: 0;
+    width: 100%;
+}
+
+.content-section {
+    margin: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Chart container */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.chart-container canvas {
+    max-width: 600px;
+    margin: 0 auto;
+}
+/* Table styling */
+.table-container {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.table-container th, .table-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-container th {
+    background-color: #004aad;
+    color: white;
+    font-weight: bold;
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-container tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 5px 0;
+    background-color: #007bff;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
