@@ -1,12 +1,13 @@
 <?php
 include 'koneksi.php';
 
-// Mengambil data peminjaman
-$result = $conn->query("SELECT fakultas, GROUP_CONCAT(buku) as buku FROM peminjaman GROUP BY fakultas");
+// Mengambil data peminjaman per fakultas dan prodi
+$result = $conn->query("SELECT fakultas, prodi, GROUP_CONCAT(buku) as buku FROM peminjaman GROUP BY fakultas, prodi");
 
-$data = [];
+$dataFakultasProdi = [];
 while ($row = $result->fetch_assoc()) {
-    $data[] = explode(',', $row['buku']);
+    $key = $row['fakultas'] . ' - ' . $row['prodi'];
+    $dataFakultasProdi[$key] = explode(',', $row['buku']);
 }
 
 // Fungsi Apriori
@@ -36,11 +37,18 @@ function apriori($data, $minSupport, $minConfidence) {
     return $frequentPatterns;
 }
 
-// Menjalankan algoritma
+// Menjalankan algoritma per fakultas dan prodi
 $minSupport = 0.5;
-$patterns = apriori($data, $minSupport, 0.5);
+$minConfidence = 0.5;
 
-foreach ($patterns as $item => $support) {
-    echo "Pola: $item, Support: $support<br>";
+foreach ($dataFakultasProdi as $key => $transactions) {
+    echo "<h3>Fakultas dan Prodi: $key</h3>";
+
+    $patterns = apriori([$transactions], $minSupport, $minConfidence);
+
+    foreach ($patterns as $item => $support) {
+        echo "Pola: $item, Support: $support<br>";
+    }
+    echo "<hr>";
 }
 ?>

@@ -9,9 +9,9 @@ if (isset($_POST['submit_pengunjung'])) {
 
     $sql = "INSERT INTO pengunjung (nama, fakultas, prodi, tanggal_kunjungan) VALUES ('$nama', '$fakultas', '$prodi', '$tanggal')";
     if ($conn->query($sql)) {
-        echo "Data pengunjung berhasil disimpan.";
+        echo "<script>alert('Data pengunjung berhasil disimpan.'); window.location.href='index.php';</script>";
     } else {
-        echo "Gagal menyimpan: " . $conn->error;
+        echo "<script>alert('Gagal menyimpan: " . $conn->error . "'); window.location.href='index.php';</script>";
     }
 }
 
@@ -24,12 +24,10 @@ if (isset($_POST['submit_peminjaman'])) {
 
     $sql = "INSERT INTO peminjaman (nama, fakultas, prodi, buku, tanggal_peminjaman) VALUES ('$nama', '$fakultas', '$prodi', '$buku', '$tanggal')";
     if ($conn->query($sql)) {
-        echo "Data peminjaman berhasil disimpan.";
+        echo "<script>alert('Data peminjaman berhasil disimpan.'); window.location.href='index.php';</script>";
     } else {
-        echo "Gagal menyimpan: " . $conn->error;
+        echo "<script>alert('Gagal menyimpan: " . $conn->error . "'); window.location.href='index.php';</script>";
     }
 }
-
-
 
 ?>
