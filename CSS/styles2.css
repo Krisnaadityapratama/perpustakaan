@@ -1,37 +1,4 @@
-/* General body styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
 
-/* Header styling */
-header {
-    background-color: #007bff;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    height: 53px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 1.7em;
-}
-
-header h1 img {
-    height: 50px;
-    margin-right: 5px;
-}
 
 h1 {
     text-align: center;
